@@ -16,10 +16,9 @@ function BlogList() {
   );
 
   const updateRowsPerPage = (selectedOption) => {
+    setCurrentPage(1);
+    setInitialPosOfThePage(0);
     setSelectedPageSize(selectedOption);
-
-    // ******** Doesn't work *************
-    //setCurrentPage(1);
   };
 
   const updatePage = (chosenPage) => {
