@@ -19,15 +19,15 @@ function usePagination({ currentPage, lastPage }) {
       If there is(are) 1 OR 2 OR 3 OR 4 pages, they must be shown thoroughly without any DOTS.
     
       //----------- If we've got more than 4 pages -----------
-      1.If currentPage is the first page:  rangeArray = [1, 2, 3, DOTS, lastPage];
-      2.If currentPage is the last page:  rangeArray = [1, DOTS, lastPage - 2, lastPage - 1, lastPage];
+      1.If currentPage is the first page: rangeArray = [1, 2, 3, DOTS, lastPage];
+      2.If currentPage is the last page: rangeArray = [1, DOTS, lastPage - 2, lastPage - 1, lastPage];
       3.If currentPage is somewhere between the first and the last page. 
         //In this case we will calculate the distance between the left/right sibling and the first/last page to determine if we should apply DOTS or not:      
         //Here there are 4 situations:
-            // 1.We need DOTS in the both sides of the currentPage:  rangeArray= [1, ..., 3, currentPage, 5, ... ,8]
-            // 2.We need DOTS in the left side of the currentPage:  rangeArray= [1, ...,6 ,currentPage ,8]
-            // 3.We need DOTS in the right side of the currentPage:  rangeArray= [1, currentPage, 3, ..., 8]
-            // 4.We do not need DOTS:  rangeArray= [1,2,3,4,5]
+            // 1.We need DOTS in the both sides of the currentPage: rangeArray= [1, ..., 3, currentPage, 5, ... ,8]
+            // 2.We need DOTS in the left side of the currentPage: rangeArray= [1, ...,6 ,currentPage ,8]
+            // 3.We need DOTS in the right side of the currentPage: rangeArray= [1, currentPage, 3, ..., 8]
+            // 4.We do not need DOTS: rangeArray= [1,2,3,4,5]
 
   */
 
