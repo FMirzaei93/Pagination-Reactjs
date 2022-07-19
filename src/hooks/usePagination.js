@@ -29,8 +29,8 @@ function usePagination({ currentPage, lastPage }) {
          //Here there are 3 exceptions:
             // 1. When there are 5 pages and currentPage is 3. As we know, there must be two siblings in the left and the right sides of currentPage, and the first and the last page must be shown. So rangeArray would be: [1,2,3,4,5]
             // 2. When currentPage is the '3rd to last' item; there shouldn't be any DOTS between the 'second to last' and the last item. => rangeArray=[1,...,6,7,8]
-            // 3. When currentPage is the '3rd' item; there shouldn't be any DOTS between the 'first' and the '2nd' item. => rangeArray=[1,2,3,...,6,7,8]
-
+            // 3. When currentPage is the '3rd' item; there shouldn't be any DOTS between the 'first' and the '2nd' item. => rangeArray=[1,2,3,...,8]
+            //4.In other cases: => rangeArray=[1,...,5,6,7,...,10]
   */
 
   let rangeArray = [];
