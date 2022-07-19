@@ -22,11 +22,18 @@ function Pagination({
   });
 
   const onNext = () => {
-    onPageChange(currentPage + 1);
+    const remainder = totalCount % pageSize;
+    let maxPossiblePages = 0;
+    if (remainder == 0) maxPossiblePages = totalCount / pageSize;
+    else maxPossiblePages = Math.ceil(totalCount / pageSize);
+
+    if (currentPage < maxPossiblePages) onPageChange(currentPage + 1);
   };
 
   const onPrevious = () => {
-    onPageChange(currentPage - 1);
+    if (currentPage > 1) {
+      onPageChange(currentPage - 1);
+    }
   };
 
   return (
@@ -96,7 +103,7 @@ function Pagination({
         aria-label="Select page size"
         value={pageSize}
         onChange={(e) => {
-          onPageSizeOptionChange(e.target.value);
+          onPageSizeOptionChange(parseInt(e.target.value));
         }}
       >
         {pageSizeOptions.map((size) => (
