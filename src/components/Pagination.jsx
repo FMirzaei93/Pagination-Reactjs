@@ -16,10 +16,13 @@ function Pagination({
   pageSizeOptions,
   allUploadedPostsNumber,
 }) {
+  const lastPage = Math.ceil(totalCount / pageSize);
+
   const paginationRange = usePagination({
     currentPage,
-    totalCount,
-    pageSize,
+    lastPage,
+    //totalCount,
+    //pageSize,
   });
 
   const onNext = () => {

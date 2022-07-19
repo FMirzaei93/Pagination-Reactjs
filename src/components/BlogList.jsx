@@ -6,7 +6,7 @@ import blogs from "../data/blogs.json";
 const PAGE_SIZES = [15, 25, 50, 100];
 
 function BlogList() {
-  const [selectedPageSize, setSelectedPageSize] = React.useState(100);
+  const [selectedPageSize, setSelectedPageSize] = React.useState(15);
   const [initialIndexOfThePage, setInitialIndexOfThePage] = React.useState(0);
   const [currentPage, setCurrentPage] = React.useState(1);
 
