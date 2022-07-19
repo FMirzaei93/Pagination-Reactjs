@@ -14,6 +14,7 @@ function Pagination({
   currentPage,
   pageSize,
   pageSizeOptions,
+  allUploadedPostsNumber,
 }) {
   const paginationRange = usePagination({
     currentPage,
@@ -22,18 +23,16 @@ function Pagination({
   });
 
   const onNext = () => {
-    const remainder = totalCount % pageSize;
-    let maxPossiblePages = 0;
-    if (remainder == 0) maxPossiblePages = totalCount / pageSize;
-    else maxPossiblePages = Math.ceil(totalCount / pageSize);
-
-    if (currentPage < maxPossiblePages) onPageChange(currentPage + 1);
+    onPageChange(currentPage + 1);
   };
 
   const onPrevious = () => {
-    if (currentPage > 1) {
-      onPageChange(currentPage - 1);
-    }
+    onPageChange(currentPage - 1);
+  };
+
+  const showTheRightArrow = () => {
+    if (allUploadedPostsNumber < totalCount) return true;
+    else return false;
   };
 
   return (
@@ -42,18 +41,20 @@ function Pagination({
       // Do not remove the aria-label below, it is used for Hatchways automation.
       aria-label="Blog post pagination list"
     >
-      <li className="paginationItem">
-        <button
-          type="button"
-          className="arrowButton left"
-          // Do not remove the aria-label below, it is used for Hatchways automation.
-          aria-label="Goto previous page"
-          onClick={onPrevious}
-          disabled={false} // change this line to disable a button.
-        >
-          <ChevronLeftIcon />
-        </button>
-      </li>
+      {currentPage > 1 && (
+        <li className="paginationItem">
+          <button
+            type="button"
+            className="arrowButton left"
+            // Do not remove the aria-label below, it is used for Hatchways automation.
+            aria-label="Goto previous page"
+            onClick={onPrevious}
+            disabled={false} // change this line to disable a button.
+          >
+            <ChevronLeftIcon />
+          </button>
+        </li>
+      )}
 
       {paginationRange.map((pageNumber) => {
         const key = nanoid();
@@ -84,18 +85,20 @@ function Pagination({
         );
       })}
 
-      <li className="paginationItem">
-        <button
-          type="button"
-          className="arrowButton right"
-          // Do not remove the aria-label below, it is used for Hatchways automation.
-          aria-label="Goto next page"
-          onClick={onNext}
-          disabled={false} // change this line to disable a button.
-        >
-          <ChevronRightIcon />
-        </button>
-      </li>
+      {showTheRightArrow() && (
+        <li className="paginationItem">
+          <button
+            type="button"
+            className="arrowButton right"
+            // Do not remove the aria-label below, it is used for Hatchways automation.
+            aria-label="Goto next page"
+            onClick={onNext}
+            disabled={false} // change this line to disable a button.
+          >
+            <ChevronRightIcon />
+          </button>
+        </li>
+      )}
 
       <select
         className="paginationSelector"

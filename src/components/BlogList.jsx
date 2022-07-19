@@ -7,23 +7,26 @@ const PAGE_SIZES = [15, 25, 50, 100];
 
 function BlogList() {
   const [selectedPageSize, setSelectedPageSize] = React.useState(100);
-  const [initialPosOfThePage, setInitialPosOfThePage] = React.useState(0);
+  const [initialIndexOfThePage, setInitialIndexOfThePage] = React.useState(0);
   const [currentPage, setCurrentPage] = React.useState(1);
 
   const currentPaginationData = blogs.posts.slice(
-    initialPosOfThePage,
-    initialPosOfThePage + selectedPageSize
+    initialIndexOfThePage,
+    initialIndexOfThePage + selectedPageSize
   );
+
+  const allUploadedPostsNumber =
+    (currentPage - 1) * selectedPageSize + currentPaginationData.length;
 
   const updateRowsPerPage = (selectedOption) => {
     setCurrentPage(1);
-    setInitialPosOfThePage(0);
+    setInitialIndexOfThePage(0);
     setSelectedPageSize(selectedOption);
   };
 
   const updatePage = (chosenPage) => {
-    const initialPos = (chosenPage - 1) * selectedPageSize;
-    setInitialPosOfThePage(initialPos);
+    const initialIndex = (chosenPage - 1) * selectedPageSize;
+    setInitialIndexOfThePage(initialIndex);
     setCurrentPage(chosenPage);
   };
 
@@ -36,6 +39,7 @@ function BlogList() {
         pageSizeOptions={PAGE_SIZES}
         onPageChange={updatePage}
         onPageSizeOptionChange={updateRowsPerPage}
+        allUploadedPostsNumber={allUploadedPostsNumber}
       />
       <ul
         // Do not remove the aria-label below, it is used for Hatchways automation.
