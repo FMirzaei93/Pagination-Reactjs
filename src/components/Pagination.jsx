@@ -33,31 +33,24 @@ function Pagination({
     onPageChange(currentPage - 1);
   };
 
-  const showTheRightArrow = () => {
-    if (allUploadedPostsNumber < totalCount) return true;
-    else return false;
-  };
-
   return (
     <ul
       className="wrapper"
       // Do not remove the aria-label below, it is used for Hatchways automation.
       aria-label="Blog post pagination list"
     >
-      {currentPage > 1 && (
-        <li className="paginationItem">
-          <button
-            type="button"
-            className="arrowButton left"
-            // Do not remove the aria-label below, it is used for Hatchways automation.
-            aria-label="Goto previous page"
-            onClick={onPrevious}
-            disabled={false} // change this line to disable a button.
-          >
-            <ChevronLeftIcon />
-          </button>
-        </li>
-      )}
+      <li className="paginationItem">
+        <button
+          type="button"
+          className="arrowButton left"
+          // Do not remove the aria-label below, it is used for Hatchways automation.
+          aria-label="Goto previous page"
+          onClick={onPrevious}
+          disabled={currentPage == 1} // change this line to disable a button.
+        >
+          <ChevronLeftIcon />
+        </button>
+      </li>
 
       {paginationRange.map((pageNumber) => {
         const key = nanoid();
@@ -74,7 +67,7 @@ function Pagination({
           <li
             key={key}
             className="paginationItem"
-            aria-current="false" // change this line to highlight a current page.
+            aria-current={pageNumber == currentPage ? "page" : "false"} // change this line to highlight a current page.
           >
             <button
               type="button"
@@ -88,20 +81,18 @@ function Pagination({
         );
       })}
 
-      {showTheRightArrow() && (
-        <li className="paginationItem">
-          <button
-            type="button"
-            className="arrowButton right"
-            // Do not remove the aria-label below, it is used for Hatchways automation.
-            aria-label="Goto next page"
-            onClick={onNext}
-            disabled={false} // change this line to disable a button.
-          >
-            <ChevronRightIcon />
-          </button>
-        </li>
-      )}
+      <li className="paginationItem">
+        <button
+          type="button"
+          className="arrowButton right"
+          // Do not remove the aria-label below, it is used for Hatchways automation.
+          aria-label="Goto next page"
+          onClick={onNext}
+          disabled={allUploadedPostsNumber == totalCount} // change this line to disable a button.
+        >
+          <ChevronRightIcon />
+        </button>
+      </li>
 
       <select
         className="paginationSelector"
