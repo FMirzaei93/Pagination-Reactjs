@@ -39,7 +39,7 @@ function Pagination({
           className="arrowButton left"
           aria-label="Goto previous page"
           onClick={onPrevious}
-          disabled={currentPage == 1}
+          disabled={currentPage === 1}
         >
           <ChevronLeftIcon />
         </button>
@@ -60,7 +60,7 @@ function Pagination({
           <li
             key={key}
             className="paginationItem"
-            aria-current={pageNumber == currentPage ? "page" : "false"}
+            aria-current={pageNumber === currentPage ? "page" : "false"}
           >
             <button
               type="button"
@@ -80,7 +80,7 @@ function Pagination({
           // Do not remove the aria-label below, it is used for Hatchways automation.
           aria-label="Goto next page"
           onClick={onNext}
-          disabled={allUploadedPostsNumber == totalCount}
+          disabled={allUploadedPostsNumber === totalCount}
         >
           <ChevronRightIcon />
         </button>
