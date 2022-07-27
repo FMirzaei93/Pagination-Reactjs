@@ -2,9 +2,6 @@ export const DOTS = "...";
 
 function usePagination({ currentPage, lastPage }) {
   /*
-    Rewrite the logic here to map out the pagination to be displayed
-
-
     There are some facts,conditions and exceptions in the pagination list:
      //-------------------- Initial facts -----------------
   1.currentPage always have 2 siblinsgs.

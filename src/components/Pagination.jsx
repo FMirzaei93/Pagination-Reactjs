@@ -21,8 +21,6 @@ function Pagination({
   const paginationRange = usePagination({
     currentPage,
     lastPage,
-    //totalCount,
-    //pageSize,
   });
 
   const onNext = () => {
@@ -34,19 +32,14 @@ function Pagination({
   };
 
   return (
-    <ul
-      className="wrapper"
-      // Do not remove the aria-label below, it is used for Hatchways automation.
-      aria-label="Blog post pagination list"
-    >
+    <ul className="wrapper" aria-label="Blog post pagination list">
       <li className="paginationItem">
         <button
           type="button"
           className="arrowButton left"
-          // Do not remove the aria-label below, it is used for Hatchways automation.
           aria-label="Goto previous page"
           onClick={onPrevious}
-          disabled={currentPage == 1} // change this line to disable a button.
+          disabled={currentPage == 1}
         >
           <ChevronLeftIcon />
         </button>
@@ -67,11 +60,10 @@ function Pagination({
           <li
             key={key}
             className="paginationItem"
-            aria-current={pageNumber == currentPage ? "page" : "false"} // change this line to highlight a current page.
+            aria-current={pageNumber == currentPage ? "page" : "false"}
           >
             <button
               type="button"
-              // Do not remove the aria-label below, it is used for Hatchways automation.
               aria-label={`Goto page ${pageNumber}`}
               onClick={() => onPageChange(pageNumber)}
             >
@@ -88,7 +80,7 @@ function Pagination({
           // Do not remove the aria-label below, it is used for Hatchways automation.
           aria-label="Goto next page"
           onClick={onNext}
-          disabled={allUploadedPostsNumber == totalCount} // change this line to disable a button.
+          disabled={allUploadedPostsNumber == totalCount}
         >
           <ChevronRightIcon />
         </button>
@@ -96,7 +88,6 @@ function Pagination({
 
       <select
         className="paginationSelector"
-        // Do not remove the aria-label below, it is used for Hatchways automation.
         aria-label="Select page size"
         value={pageSize}
         onChange={(e) => {
