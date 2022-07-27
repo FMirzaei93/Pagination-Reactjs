@@ -2,10 +2,10 @@ import "../css/pagination.scss";
 
 import { ChevronLeftIcon, ChevronRightIcon } from "@heroicons/react/outline";
 import usePagination, { DOTS } from "../hooks/usePagination";
-
 import PropTypes from "prop-types";
 import React from "react";
 import { nanoid } from "nanoid";
+import { useMemo } from "react";
 
 function Pagination({
   onPageChange,
@@ -18,10 +18,12 @@ function Pagination({
 }) {
   const lastPage = Math.ceil(totalCount / pageSize);
 
-  const paginationRange = usePagination({
-    currentPage,
-    lastPage,
-  });
+  const paginationRange = useMemo(() => {
+    return usePagination({
+      currentPage,
+      lastPage,
+    });
+  }, [currentPage, lastPage]);
 
   const onNext = () => {
     onPageChange(currentPage + 1);
