@@ -2,7 +2,6 @@ import BlogPost from "./BlogPost";
 import Pagination from "./Pagination";
 import React from "react";
 import blogs from "../data/blogs.json";
-import { useCallback } from "react";
 
 const PAGE_SIZES = [15, 25, 50, 100];
 
