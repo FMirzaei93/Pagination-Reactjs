@@ -2,6 +2,7 @@ import BlogPost from "./BlogPost";
 import Pagination from "./Pagination";
 import React from "react";
 import blogs from "../data/blogs.json";
+import { useCallback } from "react";
 
 const PAGE_SIZES = [15, 25, 50, 100];
 
@@ -10,9 +11,12 @@ function BlogList() {
   const [initialIndexOfThePage, setInitialIndexOfThePage] = React.useState(0);
   const [currentPage, setCurrentPage] = React.useState(1);
 
-  const currentPaginationData = blogs.posts.slice(
-    initialIndexOfThePage,
-    initialIndexOfThePage + selectedPageSize
+  const currentPaginationData = React.useCallback(
+    blogs.posts.slice(
+      initialIndexOfThePage,
+      initialIndexOfThePage + selectedPageSize
+    ),
+    [initialIndexOfThePage, selectedPageSize]
   );
 
   const allUploadedPostsNumber =
