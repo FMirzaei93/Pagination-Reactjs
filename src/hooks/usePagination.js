@@ -7,7 +7,7 @@ function usePagination({ currentPage, lastPage }) {
 
   //With having initial facts(that are said above), if there is(are) 1 OR 2 OR 3 pages, they must be shown thoroughly without any DOTS:
 
-  if (lastPage == 1 || lastPage == 2 || lastPage == 3) {
+  if (lastPage <= 3) {
     for (let i = 0; i < lastPage; i++) {
       rangeArray.push(i + 1);
     }
@@ -15,12 +15,12 @@ function usePagination({ currentPage, lastPage }) {
   //------------ If we have more than 3 pages ----------
   else {
     //If currentPage is the first page :
-    if (currentPage == 1) {
+    if (currentPage === 1) {
       rangeArray = [1, 2, 3, DOTS, lastPage];
     }
 
     //If currentPage is the last page:
-    else if (currentPage == lastPage) {
+    else if (currentPage === lastPage) {
       rangeArray = [1, DOTS, lastPage - 2, lastPage - 1, lastPage];
     }
     // If currentPage is somewhere between the first and the last page:
