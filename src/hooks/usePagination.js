@@ -3,9 +3,9 @@ export const DOTS = "...";
 function usePagination({ currentPage, lastPage }) {
   let rangeArray = [];
 
-  //----------- If there are up to 4 pages: ---------
+  //----------- If there are up to 3 pages: ---------
 
-  //With having initial facts(that are said above), if there is(are) 1 OR 2 OR 3 pages, they must be shown thoroughly without any DOTS:
+  //If there is(are) 1 OR 2 OR 3 pages, they must be shown thoroughly without any DOTS:
 
   if (lastPage <= 3) {
     for (let i = 0; i < lastPage; i++) {
