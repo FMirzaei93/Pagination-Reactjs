@@ -10,11 +10,30 @@ function BlogList() {
   const [initialIndexOfThePage, setInitialIndexOfThePage] = React.useState(0);
   const [currentPage, setCurrentPage] = React.useState(1);
 
-  const currentPaginationData = React.useCallback(
-    blogs.posts.slice(
-      initialIndexOfThePage,
-      initialIndexOfThePage + selectedPageSize
-    ),
+  // We can do the slicing calculation in two different ways to avoid re-calculation on each re-render:
+
+  //--------------- The first way ---------------
+  // const [currentPaginationData, setCurrentPaginationData] = React.useState(
+  //   blogs.posts.slice(0, 15)
+  // );
+
+  // React.useEffect(() => {
+  //   setCurrentPaginationData(
+  //     blogs.posts.slice(
+  //       initialIndexOfThePage,
+  //       initialIndexOfThePage + selectedPageSize
+  //     )
+  //   );
+  // }, [initialIndexOfThePage, selectedPageSize]);
+
+  // --------------- The second way ----------------
+
+  const currentPaginationData = React.useMemo(
+    () =>
+      blogs.posts.slice(
+        initialIndexOfThePage,
+        initialIndexOfThePage + selectedPageSize
+      ),
     [initialIndexOfThePage, selectedPageSize]
   );
 
