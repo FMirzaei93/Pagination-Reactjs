@@ -27,6 +27,10 @@ This hook will have at least two methods for handling the GET and POST requests,
 Each time we're about to send a request, we will call this methods and pass the required parameters(if needed).
 As I mentined before, bacause we're fetching the data from an API and it's considered a side effect in React, we have to use React.useEffect hook. As React.useEffect runs after the DOM updates, it won't block the render process.
 
+To handle the loading status and any error that may occur while fetching the data, we need to define a state for each one of them.
+The initial loading state must be set to true, and therefore the progress bar will be shown to the user. Once the data is fetched, the loading state must be changed to false and so the progress bar will disappear. This update will happen in the .finally() function of the fetch method. The visibility of the progress bar element depends on the loading state and will change with updating it.
+To handle the error status, we can catch the error in the .catch() function of the fetch method. To use the thrown error message, each time fetching data runs into a problem, the .catch((error)=>{}) method will catch the error and provide us with an "error.message" value. Now we can update the error state by the message and show it to the user.
+
 ---
 
 4.Part of this application uses the package nanoid to generate keys. What issue would this cause for generating keys in React?
